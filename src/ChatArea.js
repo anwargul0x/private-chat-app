@@ -15,8 +15,6 @@ export default class ChatArea extends Component{
         console.log(this.state.names)
     }
     componentWillMount(){
-     
-      
         firebase.auth().onAuthStateChanged((user)=>{
             
            let displayName = user.displayName;
@@ -44,11 +42,15 @@ export default class ChatArea extends Component{
                 console.log(names, uids);
             })
         })
-      
-        
-        
     }
-   
+   getRecipient=(index)=>{
+        let Recipient = this.state.names[index];
+        let recipientUid = this.state.uids[index];
+        firebase.database().ref(`/messages/`).on('value',(snapshot)=>{
+            let messages = snapshot.val();
+        })
+   }
+
     signOut = (e) => {
         e.preventDefault();
        
