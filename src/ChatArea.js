@@ -48,6 +48,8 @@ export default class ChatArea extends Component{
         let recipientUid = this.state.uids[index];
         firebase.database().ref(`/messages/`).on('value',(snapshot)=>{
             let messages = snapshot.val();
+            
+
         })
    }
 
