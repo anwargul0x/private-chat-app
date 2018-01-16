@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 
 
 import TextField from 'material-ui/TextField';
+import LinearProgress from 'material-ui/LinearProgress';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 
@@ -83,12 +84,13 @@ export default class SignInPage extends Component {
                                 style={btn} /> <br /><br /><br />
                     
                             <section style={btn}>
-                            <Link to='/SignUp' style={{ textDecoration: "none",color:"#432f7a"}}>Doesn't Have An Account ?</Link></section><br/>
+                            <Link to='/SignUp' style={{ textDecoration: "none",color:"#435f7a"}}>Doesn't Have An Account ?</Link></section><br/>
                             <RaisedButton 
                                 label="Sign In" 
                                 type="submit"
-                                primary={true} 
+                                primary={true}
                                 style={btn} />
+                        
                             {this.state.warning && <p>{this.state.warningText}</p>}
                             </form>
                         </div>
@@ -115,7 +117,7 @@ const btn = {
     
 };
 const head = {
-    backgroundColor: "#432f7a",
+    backgroundColor: "#435f7a",
     color:"#fff",
     fontWeight:"500",
     width:"100%",

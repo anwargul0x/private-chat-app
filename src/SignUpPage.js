@@ -154,7 +154,8 @@ const head = {
 };
 
 const bgImage = {
-    backgroundImage: 'url(' + require('./assets/Background.png') + ')',
+    // backgroundImage: 'url(' + require('./assets/Background.png') + ')',
+    backgroundImage: `url(${require('./assets/Background.png')})`,
     backgroundSize: 'cover',
     overflow: 'hidden',
     height: "auto",
