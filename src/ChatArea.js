@@ -13,7 +13,6 @@ export default class ChatArea extends Component{
             recipientNames:[],
             recipient:'',
             recipientUid:'',
-            
             chatMessages:[],
             chatClasses:[],
             toggle:false
@@ -23,7 +22,7 @@ export default class ChatArea extends Component{
     componentWillMount(){
         firebase.auth().onAuthStateChanged((user)=>{
             
-           let displayName = user.displayName;
+            let displayName = user.displayName;
             let uid = user.uid;
             this.setState({
                 displayName:displayName,
@@ -51,57 +50,46 @@ export default class ChatArea extends Component{
     }
 
    getRecipient=(index)=>{
-        let recipient = this.state.recipientNames[index];
+       
         let recipientUid = this.state.uids[index];
-    console.log(recipientUid+" line 56 recipient uid");
+    
        firebase.database().ref().child(`messages/`).on('value',(snapshot)=>{
             let messages = snapshot.val();
-           let chatMessages = [];
-           let filterClasses = [];
-            console.log(messages,recipientUid);
+            let chatMessages = [];
+            let filterClasses = [];
             for(let key in messages){
-
-               
                 if ((recipientUid === messages[key].To && this.state.uid === messages[key].From) || (this.state.uid === messages[key].To && recipientUid === messages[key].From ))
-                {
-                    chatMessages.push(messages[key].message);
-                    console.log(chatMessages);
-                    if (messages[key].From === this.state.uid) {
-                        filterClasses.push('send')
-                        console.log('send push')
-                    }
+                    {
+                        chatMessages.push(messages[key].message);
+                                if (messages[key].From === this.state.uid) {
+                                    filterClasses.push('send')
+                                           }
                     else {
                         filterClasses.push('receive')
-                        console.log('push recieve')
-                }
-               
-            }
-            } console.log(chatMessages)
+                                        }
+                           }
+            } 
             this.setState(()=>{return{
                 recipient: this.state.recipientNames[index],
                 recipientUid: this.state.uids[index],
                 chatMessages:chatMessages,
                 chatClasses:filterClasses,
                 toggle : true
-            }})
-            console.log(filterClasses)
-        })
-        console.log(`to ${this.state.recipientNames[index]} & uid ${recipientUid} from ${this.state.displayName} message ${this.state.chatMessage}`)
-        
+            }})  
+        })   
    }
 
     signOut = (e) => {
         e.preventDefault();
-       
         firebase.auth().signOut().then(() => {
-            this.setState({
-                displayName: '',
-                uid: '',
-                uids: [],
-                names: []
-            })
+        this.setState({
+            displayName: '',
+            uid: '',
+            uids: [],
+            names: []
+                })
             this.props.history.push('/');    
-        }
+            }
         ).catch((error)=>{alert(error.message)});
     }
     render()
@@ -113,7 +101,6 @@ export default class ChatArea extends Component{
                     <div className="contacts">
                     {this.state.recipientNames.map((name,index)=>{return(<h2 key={index}
                     onClick={()=>{this.getRecipient(index)}}>{name}</h2>)})}
-                    
                     </div>
                 </div>
                  

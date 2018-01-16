@@ -7,27 +7,26 @@ import * as firebase from 'firebase';
         this.state = {
             message: '',
         };
-        // console.log(this.props.chatClasses,this.props.chatMessages)
-     }
+             }
       handleChangeMessage = (newMessage) => {
          this.setState({
              message: newMessage.target.value
          })
      }
      scroller = () => {
-         document.querySelector('.messages').scrollTop=999999;
+         document.querySelector('.messages').scrollTop=9999999;
      }
      sendMessage = (e) => {
          e.preventDefault();
-     if(this.state.message.trim()!==''){
-         firebase.database().ref(`/messages`).push({
-             To: this.props.To,
-             From: this.props.From,
-             message: this.state.message
-         }).then(() => { this.setState({ message: '' }) }).catch((error) => { alert(error.message) });
-     }
+             if(this.state.message.trim()!==''){
+                firebase.database().ref(`/messages`).push({
+                    To: this.props.To,
+                    From: this.props.From,
+                    message: this.state.message
+                }).then(() => { this.setState({ message: '' }) }).catch((error) => { alert(error.message) });
+                                                }
     else{
-        alert(`Invalid messages.Please type Something..`)
+    alert(`Invalid messages.Please type Something..`)
     this.setState({message:''})}
     }
 render(){

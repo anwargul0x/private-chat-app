@@ -66,7 +66,7 @@ export default class SignUpPage extends Component{
 
                     })
                 }, 3000);
-                this.props.history.push('/');
+                this.props.history.push('/ChatArea');
                 console.log(`sign up success `)   
             }
         
@@ -115,7 +115,7 @@ export default class SignUpPage extends Component{
 
                         <section style={btn}><Link to='/' style={{ textDecoration: "none", color: "#432f7a" }}>Doesn't Have An Account ?</Link></section><br />
                         <RaisedButton label="Sign Up" primary={true} style={btn} type="submit"/>
-                        {this.state.progress && <p><LinearProgress mode='indeterminate'/></p>}
+                        {this.state.progress && <LinearProgress mode="indeterminate" style={{ width: '95%', margin: '10px auto' }} />}
                         {this.state.warning&&<p>{this.state.warningText}</p>}
                     </form></div>
                 </Paper>
@@ -128,7 +128,7 @@ export default class SignUpPage extends Component{
 const style = {
     opacity: 0.96,
     width: '29%',
-    height: '75vh',
+    height: '76.5vh',
     display: "block",
     justifyContent: 'center',
     padding: '0',

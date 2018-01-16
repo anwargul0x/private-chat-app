@@ -11,6 +11,7 @@
 .child-one{
     background-color: #2c3e50;
     min-width: 25.5%;
+    text-transform: capitalize;    
 }
 .logUser{
     background-color: #32465a;
@@ -33,7 +34,7 @@
     border:2px solid #32465a;
     color: #e6eaea;
     min-height:69%;
-    max-height:76.5%;
+    max-height:69%;
     margin:30px auto;
     /* background-color: #32465a; */
     width: 92%;
@@ -69,7 +70,14 @@
     max-height:92%; 
     margin:28px auto;
     min-height:85%;
-    width:98%;
+    width:97.7%;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #2c3e50;
+  outline: none;
+}
+::-webkit-scrollbar-button {
+    background-color: #435f7a;
 }
 .messages{
     background-color: #ffffff;
@@ -99,7 +107,7 @@ input.input{
     box-shadow: 1px 5px 8px 0px #2c3e50;
     font-size:20px;
     height: 5%;
-    left:18.08em;
+    left:17.9em;
     padding:0.33em 0.4em;
     position:absolute;
     width:58%; 
@@ -114,7 +122,7 @@ input.input{
     font-size:18px;
     padding:0.84em;
     position:absolute;
-    right:1.1em;
+    right:0.58em;
     width:12%;
 }
 .logout-btn{
@@ -124,6 +132,9 @@ input.input{
     color: #f5f5f5;
     font-size:18px;
     padding:1.2em 2em;
+}
+.logout-btn:hover,.send-btn:hover{
+    background-color: #435f7a;
 }
 .send,.receive{
     overflow-wrap: word-break; 

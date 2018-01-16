@@ -8,7 +8,7 @@ import LinearProgress from 'material-ui/LinearProgress';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 
-    const auth = firebase.auth();
+const auth = firebase.auth();
 
 export default class SignInPage extends Component {
     constructor(props){
@@ -17,11 +17,13 @@ export default class SignInPage extends Component {
             email:'',
             password:'',
             warning:false,
-            warningText:''
+            warningText:'',
+            progress:false
         }
     }
     setSignInDetails = (event) => {
         event.preventDefault();
+        this.setState({ progress: true})
         const email = this.state.email;
         const password = this.state.password;
         auth.signInWithEmailAndPassword(email,password)
@@ -31,12 +33,14 @@ export default class SignInPage extends Component {
                     email: '',
                     password: '',
                     warning: false,
-                    warningText: ''})
+                    warningText: '',
+               })
                 this.props.history.push('/chatArea')
             })
             .catch((error) => {
                 this.setState({
                     warning: true,
+                    progress:false,
                     warningText: error.message
                 })
                 setTimeout(() => {
@@ -90,7 +94,7 @@ export default class SignInPage extends Component {
                                 type="submit"
                                 primary={true}
                                 style={btn} />
-                        
+                        {this.state.progress&&<LinearProgress mode="indeterminate" style={{width:'95%',margin:'10px auto'}}/>}
                             {this.state.warning && <p>{this.state.warningText}</p>}
                             </form>
                         </div>
@@ -103,7 +107,7 @@ export default class SignInPage extends Component {
 const style ={
     opacity:0.96,
     width: '29%',
-    height:'72.3vh',
+    height:'73.8vh',
     display:"block",
     justifyContent:'center',
     margin:"6% auto",
