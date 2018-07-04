@@ -17,7 +17,7 @@
     background-color: #32465a;
     color:#fff;
     font-weight: bold;
-    margin: 7px auto;
+    margin: 14px auto;
     padding:0.1em 0;
     text-align: center;
     width: 92%;
@@ -51,12 +51,13 @@
 }
 .header{
     background-color: #ffffff;
-    font-weight: 800;
-    font-size:20px; 
+    font-weight: 600;
+    font-size:28px; 
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
     display: flex;
     justify-content: space-between;
     padding: 0em 0em 0em 0.99em;
-    margin:5px auto;
+    margin:10px auto;
     width:93.3%;  
     box-shadow: 0px 2px 3px 0px #95a5a6; 
 }
@@ -83,9 +84,6 @@
     background-color: #ffffff;
     border-radius: 0.3em;
     box-shadow: 0px 2px 7px 0px #95a5a6;
-    /* display: flex;
-    float: left;
-    flex-direction: column; */
     height: 73.2vh;
     max-height: 73.2vh;
     overflow-y: auto;
@@ -94,8 +92,8 @@
 
 }
 .messages ul{
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 .messages li{
     list-style: none;
@@ -104,8 +102,7 @@
    
 
 }
-/* .messages li.send{float: right;}
-.messages li.receive{float: left;} */
+
 input.input{
     border:1px solid #bdc3c7; 
     border-radius:0.2em;
@@ -116,9 +113,6 @@ input.input{
     position: relative;
     top: 20px;
     width:84%; 
-    /* left:17.9em; */
-    /* bottom:13px; */
-
 }
 .send-btn{
     background-color: #2980b9;
@@ -132,8 +126,6 @@ input.input{
     top: 20px;
     left:0.8em;
     box-shadow: 0px 3px 6px 0px #95a5a6;
-    /* bottom:10px; */
-    /* width:12%; */
 }
 .logout-btn{
     background-color: #2980b9;
@@ -143,24 +135,21 @@ input.input{
     font-size:18px;
     padding:1.33em 2em;
     margin-top:0.45%;
-    box-shadow: 0px 3px 6px 0px #95a5a6;
+    box-shadow: 0px 1px 3px 0px #95a5a6;
 }
 .logout-btn:hover,.send-btn:hover{
     background-color: #435f7a;
 }
 .send,.receive{
-    /* overflow-wrap: word-break;  */
     padding:0.9em 1.1em;
     max-width:46%;
+    font-size: 24px;
 }
 .send{
     background-color: #2980b9;
-    box-shadow: 0px 0px 3px 0px #95a5a6;
-    font-size: 16px;
+    box-shadow: 0px 2px 3px 0px #95a5a6;
     border-radius: 0.9em 0.9em 0em 0.9em;   
     color:#e6eaea;
-    /* margin-right: -9em; */
-
 }
 .receive{
     background-color: #ecf0f1;
@@ -169,7 +158,13 @@ input.input{
 }
 .msg-container-send{
     width:100%;
-    margin-top: 3px;
+    margin-top: 2px;
     display: flex;
     justify-content: flex-end;
+}
+.msg-container-receive{
+    width:100%;
+    margin-top: 2px;
+    display: flex;
+    justify-content: flex-start;
 }
