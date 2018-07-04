@@ -21,7 +21,6 @@ export default class ChatArea extends Component{
     }
     componentWillMount(){
         firebase.auth().onAuthStateChanged((user)=>{
-            
             let displayName = user.displayName;
             let uid = user.uid;
             this.setState({
@@ -53,21 +52,20 @@ export default class ChatArea extends Component{
        
         let recipientUid = this.state.uids[index];
     
-       firebase.database().ref().child(`messages/`).on('value',(snapshot)=>{
+       firebase.database().ref(`/users/${this.state.uid}/messages/${recipientUid}`).on('value',(snapshot)=>{
             let messages = snapshot.val();
             let chatMessages = [];
             let filterClasses = [];
             for(let key in messages){
-                if ((recipientUid === messages[key].To && this.state.uid === messages[key].From) || (this.state.uid === messages[key].To && recipientUid === messages[key].From ))
-                    {
+                
                         chatMessages.push(messages[key].message);
-                                if (messages[key].From === this.state.uid) {
+                                if (messages[key].To !== this.state.uid) {
                                     filterClasses.push('send')
                                            }
                     else {
                         filterClasses.push('receive')
                                         }
-                           }
+                           
             } 
             this.setState(()=>{return{
                 recipient: this.state.recipientNames[index],

@@ -65,7 +65,7 @@ export default class SignUpPage extends Component{
                         warningText:''
 
                     })
-                }, 3000);
+                }, 800);
                 this.props.history.push('/ChatArea');
                 console.log(`sign up success `)   
             }
@@ -162,7 +162,4 @@ const bgImage = {
     marginTop: "0px",
     marginLeft: '-4px'
 
-}
-const opac = {
-    opacity: 1
 }
