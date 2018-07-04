@@ -3,6 +3,8 @@ import * as firebase from 'firebase'
 import MessageBox from './messageBox'
 import './chat.css'
 
+import * as moment from 'moment';
+
 export default class ChatArea extends Component{
     constructor(){
         super();
@@ -20,6 +22,7 @@ export default class ChatArea extends Component{
         console.log(this.state.names)
     }
     componentWillMount(){
+        console.log('===== moment =====',moment());
         firebase.auth().onAuthStateChanged((user)=>{
             let displayName = user.displayName;
             let uid = user.uid;
