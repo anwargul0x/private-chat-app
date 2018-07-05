@@ -19,10 +19,9 @@ export default class ChatArea extends Component{
             chatClasses:[],
             toggle:false
         }
-        console.log(this.state.names)
     }
     componentWillMount(){
-        console.log('===== moment =====',moment());
+        console.log('===== moment =====',moment().format());
         firebase.auth().onAuthStateChanged((user)=>{
             let displayName = user.displayName;
             let uid = user.uid;
