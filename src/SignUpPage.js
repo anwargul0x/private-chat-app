@@ -20,7 +20,8 @@ export default class SignUpPage extends Component{
             password:'',
             warning: false, 
             warningText:'',
-            progress:false
+            progress:false,
+            fileSelected: null
         } 
     }
    
@@ -42,6 +43,21 @@ export default class SignUpPage extends Component{
             password: Password
         })
     }
+
+    fileHandler = e => this.setState({ fileSelected: e.target.files[0] })
+
+    uploadFile = (uid) => {
+        const file = this.state.fileSelected;
+        const storage = firebase.storage().ref(`images/${uid}/${file.name}`);
+        const task = storage.put(file);
+        task.on('state_changed',
+            snapshot => {
+                const percentage = Math.round(snapshot.btyesTransferred / snapshot.totalBytes * 100);
+                console.log('=====Progress=====', percentage)
+            }),
+            e => console.log('Error', e)
+    }
+
     setUserDetailsToFirebase=(event)=>{
         event.preventDefault();
         
@@ -55,6 +71,7 @@ export default class SignUpPage extends Component{
                 auth.currentUser.updateProfile({displayName:Name})
                     const uid = user.uid;
                     database.ref(`/users/${uid}`).set({Email:email,FullName:Name});
+                this.uploadFile(uid);
                 
                 setTimeout(() => {
                     this.setState({
@@ -112,6 +129,7 @@ export default class SignUpPage extends Component{
                             type="password" style={btn} 
                             value={this.state.password}
                             onChange={this.setPassword}/> <br />
+                        <input type='file' onChange={this.fileHandler} />    <br />
 
                         <section style={btn}><Link to='/' style={{ textDecoration: "none", color: "#432f7a" }}>Doesn't Have An Account ?</Link></section><br />
                         <RaisedButton label="Sign Up" primary={true} style={btn} type="submit"/>
