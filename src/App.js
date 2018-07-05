@@ -13,7 +13,7 @@ import ChatArea from './ChatArea';
 export default class  App extends React.Component{
 render(){
   console.log('===== moment =====',moment().format())
-  console.log('===== from Now =====', moment('2018-07-05T09:48:49+05:00').fromNow())
+  console.log('===== from Now =====', moment('2018-07-05T16:04:41+05:00').fromNow())
   return(
     <Router>
     <div>

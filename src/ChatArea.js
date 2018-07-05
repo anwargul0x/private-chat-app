@@ -17,7 +17,10 @@ export default class ChatArea extends Component{
             recipientUid:'',
             chatMessages:[],
             chatClasses:[],
-            toggle:false
+            toggle:false,
+            avatar:'',
+            urls:[]
+
         }
     }
     componentWillMount(){
@@ -25,27 +28,32 @@ export default class ChatArea extends Component{
         firebase.auth().onAuthStateChanged((user)=>{
             let displayName = user.displayName;
             let uid = user.uid;
+            let url = user.photoURL;
             console.log('Url======>',user.photoURL);
             this.setState({
                 displayName:displayName,
-                uid:uid})
+                uid:uid,
+            avatar:url})
                 console.log(displayName,uid);
             firebase.database().ref(`/users`).on('value', (user) => {
                 
                 let uids = [];
                 let userNames = [];
+                let profileImages = [];
                 let users = user.val();
                 for (let key in users) {
                     console.log(key, uid)
                     if (uid !== key) {
                         userNames.push(users[key]['FullName']);
+                        profileImages.push(users[key]['url']);
                         uids.push(key)
                     }
                 }
-                console.log(userNames, uids);
+                console.log(userNames, uids, profileImages);
                 this.setState({
                     uids: uids,
-                    recipientNames: userNames
+                    recipientNames: userNames,
+                    urls: profileImages
                 })
             })
         })
@@ -93,15 +101,20 @@ export default class ChatArea extends Component{
             }
         ).catch((error)=>{alert(error.message)});
     }
-    render()
-        {
+    render() {
+        const {urls} = this.state;
     return (
         <div className="main">
                 <div className="child-one">
-                    <div className="logUser"><h3>{this.state.displayName}</h3></div>
+                    <div className="logUser">
+                        <img src={`${this.state.avatar}`} className='avatar'/>
+                    <span className='avatarName'> <h3>{this.state.displayName}</h3></span>
+                    </div>
                     <div className="contacts">
-                    {this.state.recipientNames.map((name,index)=>{return(<h2 key={index}
-                    onClick={()=>{this.getRecipient(index)}}>{name}</h2>)})}
+                    {this.state.recipientNames.map((name,index)=>{
+                        return (<div key={index} className='users-list-align'><span><img src={`${urls[index]}`} className='avatar' /></span>
+                        <h2 key={index} className='users-list-padding' onClick={()=>{this.getRecipient(index)}}>{name}</h2>
+                    </div>)})}
                     </div>
                 </div>
                  

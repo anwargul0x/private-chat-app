@@ -14,13 +14,16 @@
     text-transform: capitalize;    
 }
 .logUser{
-    background-color: #32465a;
-    color:#fff;
+    background-color: #ecf0f1;
+    color:#32465a;
     font-weight: bold;
     margin: 14px auto;
-    padding:0.1em 0;
+    padding:0.3em 0.4em;
     text-align: center;
-    width: 92%;
+    border-radius: 5px;
+    width: 90%;
+    display: flex;
+    align-items: center;
 }
 .contacts{  
     cursor: pointer;
@@ -28,21 +31,19 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 10px 0px 15px 0px;
-    position: relative;
     text-transform: capitalize;
-    /* mine */
     border:2px solid #32465a;
     color: #e6eaea;
     min-height:69%;
     max-height:69%;
     margin:30px auto;
-    /* background-color: #32465a; */
+    
     width: 92%;
 }
-.contacts h2:hover{background-color: #435f7a;}
+/* .contacts h2:hover{background-color: #435f7a;} */
 .contacts h2{
-    margin-top: -0.5em;
-    padding:0.5em 0.1em 0.5em 0.8em;
+    /* margin-top: -0.06em; */
+    padding: 0.56em 2em;
 }
 .child-two{
     background-color:#ecf0f1;
@@ -167,4 +168,26 @@ input.input{
     margin-top: 2px;
     display: flex;
     justify-content: flex-start;
+}
+.avatar{
+    width:50px;
+    height:50px;
+    border-radius: 25px;
+}
+.avatarName{
+    width: 60%;
+}
+.users-list-align{
+    display:flex ;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+    margin-top: 3px;
+
+}
+.users-list-align:hover{
+    background-color: #435f7a;
+}
+.users-list-padding{
+    flex-grow: 1;
 }
