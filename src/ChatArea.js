@@ -25,6 +25,7 @@ export default class ChatArea extends Component{
         firebase.auth().onAuthStateChanged((user)=>{
             let displayName = user.displayName;
             let uid = user.uid;
+            console.log('Url======>',user.photoURL);
             this.setState({
                 displayName:displayName,
                 uid:uid})

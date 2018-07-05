@@ -46,17 +46,26 @@ export default class SignUpPage extends Component{
 
     fileHandler = e => this.setState({ fileSelected: e.target.files[0] })
 
-    uploadFile = (uid) => {
+    uploadFile = (uid, Name) => {
         const file = this.state.fileSelected;
         const storage = firebase.storage().ref(`images/${uid}/${file.name}`);
         const task = storage.put(file);
+        // firebase.database().ref(`users/${uid}/avatar`).set({profileImage: file.name});
+        // ('gs://chat-app-2018.appspot.com/images/${uid}/log Screen.png')
         task.on('state_changed',
             snapshot => {
-                const percentage = Math.round(snapshot.btyesTransferred / snapshot.totalBytes * 100);
+                const percentage = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
                 console.log('=====Progress=====', percentage)
             }),
             e => console.log('Error', e)
-    }
+        storage.getDownloadURL()
+        .then(url => {
+            auth.currentUser.updateProfile({ 
+                displayName: Name,
+                photoURL: url})
+                
+            })
+        }
 
     setUserDetailsToFirebase=(event)=>{
         event.preventDefault();
@@ -68,10 +77,13 @@ export default class SignUpPage extends Component{
         {   this.setState({progress:true})
             auth.createUserWithEmailAndPassword(email,password)
             .then((user)=>{
-                auth.currentUser.updateProfile({displayName:Name})
                     const uid = user.uid;
-                    database.ref(`/users/${uid}`).set({Email:email,FullName:Name});
-                this.uploadFile(uid);
+                this.uploadFile(uid,email,Name);
+                database.ref(`/users/${uid}`).set({
+                    Email: email,
+                    FullName: Name,
+                    photoURL: auth.currentUser.photoURL,
+                });
                 
                 setTimeout(() => {
                     this.setState({
