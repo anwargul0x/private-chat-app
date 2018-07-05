@@ -44,7 +44,7 @@ export default class ChatArea extends Component{
                 for (let key in users) {
                     console.log(key, uid)
                     if (uid !== key) {
-                        userNames.push(users[key]['FullName']);
+                        userNames.push(users[key]['name']);
                         profileImages.push(users[key]['url']);
                         uids.push(key)
                     }
@@ -111,9 +111,10 @@ export default class ChatArea extends Component{
                     <span className='avatarName'> <h3>{this.state.displayName}</h3></span>
                     </div>
                     <div className="contacts">
-                    {this.state.recipientNames.map((name,index)=>{
+                    {this.state.recipientNames.map((named,index)=>{
+                        console.log('==== recipient ====',this.state.recipientNames);
                         return (<div key={index} className='users-list-align'><span><img src={`${urls[index]}`} className='avatar' /></span>
-                        <h2 key={index} className='users-list-padding' onClick={()=>{this.getRecipient(index)}}>{name}</h2>
+                        <h2 key={index} className='users-list-padding' onClick={()=>{this.getRecipient(index)}}>{named}</h2>
                     </div>)})}
                     </div>
                 </div>
