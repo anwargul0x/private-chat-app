@@ -8,9 +8,6 @@ import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import Paper from "material-ui/Paper";
 
-const database = firebase.database();
-const auth = firebase.auth();
-
 export default class SignUpPage extends Component {
   constructor(props) {
     super(props);
