@@ -20,7 +20,7 @@ export default class ChatArea extends Component {
       urls: []
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       let displayName = user.displayName;
       let uid = user.uid;
